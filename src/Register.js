@@ -7,6 +7,7 @@ function Register({ onRegister, onToggle }) {
   const [password, setPassword] = useState('');
 
   const [message, setMessage] = useState('');
+  const API_URL = process.env.REACT_APP_API_URL;
 
   const handleRegister = async () => {
 
@@ -29,7 +30,7 @@ function Register({ onRegister, onToggle }) {
     
     try {
       setMessage('');
-      const res = await fetch('http://localhost:5000/api/register', {
+      const res = await fetch(`${API_URL}/api/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })

@@ -15,6 +15,7 @@ function App() {
   const [phone, setPhone] = useState('');
   const [avisList, setAvisList] = useState([]);
   const [error, setError] = useState('');
+  const API_URL = process.env.REACT_APP_API_URL;
 
   // Champs pour ajout d’avis
   const [newAvis, setNewAvis] = useState({
@@ -48,7 +49,7 @@ function App() {
     try {
       const token = localStorage.getItem('token');
 
-      const res = await fetch(`http://localhost:5000/api/avis/${phone}`, {
+      const res = await fetch(`${API_URL}/api/avis/${phone}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -90,7 +91,7 @@ function App() {
     try {
       const token = localStorage.getItem('token');
 
-      const res = await fetch('http://localhost:5000/api/avis', {
+      const res = await fetch(`${API_URL}/api/avis`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
