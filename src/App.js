@@ -151,7 +151,7 @@ return (
   <div className="flex items-center justify-between mb-8 p-5 bg-gray-50 border border-gray-200 rounded-xl shadow-sm">
     <div>
       <h2 className="text-2xl font-bold text-gray-800">👋 Bienvenue</h2>
-      <p className="text-sm text-gray-600">{user.email}</p>
+      <p className="text-2xl text-gray-600">{user.email}</p>
     </div>
     <button
       onClick={handleLogout}
@@ -189,7 +189,7 @@ return (
         <h3 className="text-lg font-semibold mb-4">📄 Résultats</h3>
 
         {avisList.length === 0 ? (
-          <p className="text-gray-500">Aucun avis trouvé pour ce numéro.</p>
+          <p className="text-gray-500 text-lg font-semibold">Aucun avis trouvé pour ce numéro.<br />Soyez le premier a ajouter un avis !</p>
         ) : (
           <div className="grid gap-4">
             {avisList.map((avis, index) => (
@@ -197,24 +197,38 @@ return (
                 key={index}
                 className="bg-white border border-gray-200 rounded-xl shadow-sm p-4 hover:shadow-md transition"
               >
-                <div className="flex items-center gap-2 mb-2">
+                <div className="flex items-center justify-between gap-2 mb-2">
                   <span
-                    className={`text-sm font-semibold px-3 py-1 rounded-full ${
+                    className={`text-lg font-semibold px-3 py-1 rounded-full ${
                       avis.is_positive ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
                     }`}
                   >
                     {avis.is_positive ? '👍 Avis positif' : '👎 Avis négatif'}
                   </span>
+                  
+                  <div className="text-lg text-gray-500">
+                    {new Date(avis.created_at).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' })}
+                  </div>
+
                 </div>
 
                 {avis.message && (
-                  <p className="text-gray-800 mb-2 text-sm">📝 {avis.message}</p>
+                  <p className="text-gray-800 mb-2 text-lg flex">📝 {avis.message}</p>
                 )}
 
-                <div className="text-xs text-gray-500">
-                  Posté par : <span className="font-medium">{avis.professional_email}</span><br />
-                  Le : {new Date(avis.created_at).toLocaleString()}
+                <div className="flex items-center gap-3">
+                  <img
+                    src="/logouser.png"
+                    alt="avatar"
+                    className="w-14 h-14 rounded-full"
+                  />
+                  {/* Texte à droite */}
+                  <div className="text-base text-gray-500">
+                    <span className="font-medium">{avis.professional_email}</span><br />
+                    <span className="font-medium">Professionnel</span>
+                  </div>
                 </div>
+                
               </div>
             ))}
           </div>
