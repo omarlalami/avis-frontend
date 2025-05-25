@@ -30,7 +30,7 @@ function Login({ onLogin, onToggle }) {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % avisList.length);
-    }, 4000); // change every 4 seconds
+    }, 5000); // change every 5 seconds
 
     return () => clearInterval(interval);
   }, [avisList.length]);
@@ -183,8 +183,8 @@ function Login({ onLogin, onToggle }) {
           <p className="text-lg font-semibold">
             Notre objectif est d'aider les professionnels à réduire les envois aux clients qui ne récupèrent pas leurs commandes.
           </p>
-          <p className="text-base text-gray-700">✅ Vérifiez la réputation et la fiabilité de vos clients avant l'envoi.</p>
-          <ul className="list-disc pl-5 text-gray-600 space-y-1">
+          <ul className="pl-1 text-gray-700 space-y-1">
+            <li>✅ Vérifiez la réputation et la fiabilité de vos clients avant l'envoi.</li>
             <li>❌ Éviter les mauvais clients qui ne récupèrent pas les commandes</li>
             <li>📌 Obtenez des informations sur les utilisateurs</li>
             <li>🎁 Profitez d'une application gratuite et sans publicité</li>
