@@ -78,24 +78,19 @@ function Login({ onLogin, onToggle }) {
     <div className="min-h-screen bg-white text-gray-800 flex flex-col justify-between">
       {/* En-tête */}
       <div className="text-center py-6">
-        <h1 className="text-3xl font-bold">🚫 Évitez les clients qui ne récupèrent pas leurs commandes !</h1>
+       <br /> <h1 className="text-3xl font-bold">🚫 Évitez les clients qui ne récupèrent pas leurs commandes !</h1><br /><br />
       </div>
 
       {/* Partie principale : avis défilants + login */}
-      <div className="flex flex-col lg:flex-row justify-center items-start px-4 lg:px-20 gap-10">
-        {/* Avis défilants */}
-        
-
-        {/* Avis défilants (un seul à la fois) */}
-        <div className="flex-1 max-w-xl relative h-[220px]">
-          <div className="absolute w-full h-full">
+      <div className="flex flex-col lg:flex-row justify-center lg:items-center items-start px-4 lg:px-20 gap-10">
+        {/* Avis défilants (slide horizontal) */}
+        <div className="flex-1 max-w-xl overflow-hidden relative h-[230px]">
+          <div
+            className="flex transition-transform duration-700 ease-in-out"
+            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+          >
             {avisList.map((avis, index) => (
-              <div
-                key={index}
-                className={`absolute inset-0 transition-opacity duration-500 ${
-                  currentIndex === index ? 'opacity-100' : 'opacity-0 pointer-events-none'
-                }`}
-              >
+              <div key={index} className="min-w-full px-2">
                 <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-4 hover:shadow-md transition">
                   <div className="flex items-center justify-between gap-2 mb-2">
                     <span
