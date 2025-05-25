@@ -46,8 +46,26 @@ function Login({ onLogin, onToggle }) {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      
+ 
+   <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 px-4 py-8">
+    
+      {/* Bloc d'infos / promotion */}
+      <div className="mb-6 w-full max-w-md">
+        <div className="bg-white p-6 rounded-xl shadow-md space-y-3">
+          <h2 className="text-xl font-bold text-gray-800">🔍 Vérifiez vos clients avant d'envoyer !</h2>
+          <ul className="text-gray-700 text-sm list-disc pl-5 space-y-1">
+            <li>Vérifiez la réputation et la fiabilité de vos clients avant de leur envoyer des colis.</li>
+            <li>Évitez les mauvais clients qui ne récupèrent pas leurs commandes.</li>
+            <li>Obtenez des informations partagées par d'autres professionnels.</li>
+            <li>Profitez d'une application <strong>gratuite et sans publicité</strong>.</li>
+            <li>Utilisez notre base de données communautaire de notes client.</li>
+          </ul>
+        </div>
+      </div>
+
+
+
+
 
 
 
