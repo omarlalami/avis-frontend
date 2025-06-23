@@ -40,11 +40,11 @@ function App() {
 
     const phoneRegex = /^[0-9]{6,15}$/;
     if (!phoneTrimmed) {
-      return setError("❌ Veuillez entrer un numéro de téléphone.");
+      return setError("Veuillez entrer un numéro de téléphone.");
     }
 
     if (!phoneRegex.test(phoneTrimmed)) {
-      return setError("❌ Numéro invalide : utilisez uniquement des chiffres (entre 6 et 15).");
+      return setError("Numéro invalide : exemple 06617745837.");
     }
 
     try {
@@ -83,11 +83,11 @@ function App() {
     const phoneRegex = /^[0-9]{6,15}$/;
 
     if (!phoneTrimmed) {
-      return setErrorAvis("❌ Veuillez entrer un numéro de téléphone.");
+      return setErrorAvis("Veuillez entrer le numéro du client.");
     }
 
     if (!phoneRegex.test(phoneTrimmed)) {
-      return setErrorAvis("❌ Numéro invalide : utilisez uniquement des chiffres (entre 6 et 15).");
+      return setErrorAvis("Numéro invalide : utilisez uniquement des chiffres (entre 6 et 15).");
     }
 
     try {
@@ -115,7 +115,7 @@ function App() {
         return setAddMessage(data.message || 'Erreur');
       }
 
-      setAddMessage('✅ Avis ajouté sur le ' + newAvis.client_phone);
+      setAddMessage('\nAvis ajouté sur le ' + newAvis.client_phone + '\n');
       setNewAvis({ client_phone: '', is_positive: true, message: '' });
 
       // Refresh de la recherche si même numéro
@@ -188,7 +188,16 @@ return (
         >
           Rechercher
         </button>
-        {error && <p className="text-red-600 mt-3">{error}</p>}
+        <div className="flex justify-center">
+          {error &&
+            <p className="mt-3 px-4 py-2 bg-red-100 text-red-700 border border-red-300 rounded-md text-sm flex items-center gap-2">
+              <svg className="w-4 h-4 text-red-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.054 0 1.58-1.14.99-2L13.414 4c-.525-.9-1.842-.9-2.368 0L3.05 17c-.59.86-.063 2 .99 2z" />
+              </svg>
+              {error}
+            </p>
+          }
+        </div>	
       </div>
 
       {/* Résultats */}
@@ -196,7 +205,7 @@ return (
         <h3 className="text-lg font-semibold mb-4">📄 Résultats</h3>
 
         {avisList.length === 0 ? (
-          <p className="text-gray-500 text-lg font-semibold">Aucun avis trouvé pour ce numéro.<br />Soyez le premier a ajouter un avis !</p>
+          <p className="text-gray-500 text-lg font-semibold">Aucun avis trouvé pour le numéro <br />Soyez le premier a ajouter un avis !</p>
         ) : (
           <div className="grid gap-4">
             {avisList.map((avis, index) => (
@@ -275,8 +284,26 @@ return (
       >
         Ajouter l’avis
       </button>
-      {errorAvis && <p className="text-red-600 mt-3">{errorAvis}</p>}
-      {addMessage && <p className="mt-3 text-green-600 text-sm">{addMessage}</p>}
+        <div className="flex justify-center">
+          {errorAvis &&
+            <p className="mt-3 px-4 py-2 bg-red-100 text-red-700 border border-red-300 rounded-md text-sm flex items-center gap-2">
+              <svg className="w-4 h-4 text-red-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.054 0 1.58-1.14.99-2L13.414 4c-.525-.9-1.842-.9-2.368 0L3.05 17c-.59.86-.063 2 .99 2z" />
+              </svg>
+              {errorAvis}
+            </p>
+          }	
+        </div>	
+		  
+        <div className="flex justify-center">
+          {addMessage && (
+                    <p className="text-gray-500 text-lg font-semibold whitespace-pre-line animate-bounce">{addMessage}</p>
+        )}
+        </div>	
+
+
+
+
     </div>
   </div>
 </div>

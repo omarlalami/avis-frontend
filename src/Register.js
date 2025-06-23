@@ -16,16 +16,16 @@ function Register({ onRegister, onToggle }) {
     const passwordTrimmed = password.trim();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailTrimmed) {
-      return setMessage("❌ L'email est requis.");
+      return setMessage("L'email est requis.");
     }
     if (!emailRegex.test(emailTrimmed)) {
-      return setMessage("❌ L'email est invalide.");
+      return setMessage("L'email est invalide.");
     }
     if (!passwordTrimmed) {
-      return setMessage("❌ Le mot de passe est requis.");
+      return setMessage("Le mot de passe est requis.");
     }
     if (passwordTrimmed.length < 6) {
-      return setMessage("❌ Le mot de passe doit contenir au moins 6 caractères.");
+      return setMessage("Le mot de passe doit contenir au moins 6 caractères.");
     }
     
     try {
@@ -42,7 +42,7 @@ function Register({ onRegister, onToggle }) {
       }
 
       setMessage('✅ Inscription réussie, connectez-vous.');
-      onRegister && onRegister(); // Callback (ex: switch vers login)
+      //onRegister && onRegister(); // Callback (ex: switch vers login)
     } catch (err) {
       setMessage('Erreur serveur');
     }
@@ -84,12 +84,14 @@ function Register({ onRegister, onToggle }) {
         >
           ← Retour à la connexion
         </button>
+        <div className="flex justify-center">
+          {message && (
+            <p className={`mt-3 inline-block px-4 py-2 shadow-sm text-center border rounded-md text-sm ${message.startsWith('✅') ? 'text-green-600 bg-green-100 text-green-700 border-green-300' : 'text-red-600 bg-red-100 text-red-700 border-red-300'}`}>
+              {message}
+            </p>
+          )}
+        </div>
 
-        {message && (
-          <p className={`text-sm ${message.startsWith('✅') ? 'text-green-600' : 'text-red-600'}`}>
-            {message}
-          </p>
-        )}
       </div>
     </div>
   );
