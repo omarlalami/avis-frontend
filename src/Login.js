@@ -77,9 +77,19 @@ function Login({ onLogin, onToggle }) {
 
     <div className="min-h-screen bg-white text-gray-800 flex flex-col justify-between">
       {/* En-tête */}
-      <div className="text-center py-6">
-       <br /> <h1 className="text-3xl font-bold">🚫 Évitez les clients qui ne récupèrent pas leurs commandes !</h1><br /><br />
+      <div className="flex flex-col lg:flex-row items-center justify-center gap-30 p-3 bg-white">
+        <img
+          src="/logoadaptepageacceuil.png"
+          alt="colis non reçu"
+          className="w-full max-w-[200px] rounded-lg"
+        />
+
+        <div className="text-center py-1">
+          <br /> <br /> <h1 className="text-2xl font-bold"> Évitez les clients qui ne  récupèrent pas leurs commandes !</h1><br /><br />
+        </div>
+
       </div>
+
 
       {/* Partie principale : avis défilants + login */}
       <div className="flex flex-col lg:flex-row justify-center lg:items-center items-start px-4 lg:px-20 gap-10">
@@ -174,7 +184,7 @@ function Login({ onLogin, onToggle }) {
       {/* Bas de page */}
       <div className="flex flex-col lg:flex-row items-center justify-center gap-8 p-10 bg-white">
         <img
-          src="https://blog.eurosender.com/wp-content/uploads/2022/03/colis-livre-mais-non-recu.webp"
+          src="/livreurnonrecuperer.webp"
           alt="colis non reçu"
           className="w-full max-w-sm rounded-lg shadow-md"
         />

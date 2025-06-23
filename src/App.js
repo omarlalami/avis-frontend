@@ -15,6 +15,7 @@ function App() {
   const [phone, setPhone] = useState('');
   const [avisList, setAvisList] = useState([]);
   const [error, setError] = useState('');
+  const [errorAvis, setErrorAvis] = useState('');
   const API_URL = process.env.REACT_APP_API_URL;
 
   // Champs pour ajout d’avis
@@ -74,6 +75,7 @@ function App() {
   };
 
   const handleAddAvis = async () => {
+    setErrorAvis('');
     setAddMessage('');
 
     // ✅ Vérification avant envoi
@@ -81,11 +83,11 @@ function App() {
     const phoneRegex = /^[0-9]{6,15}$/;
 
     if (!phoneTrimmed) {
-      return setAddMessage("❌ Veuillez entrer un numéro de téléphone.");
+      return setErrorAvis("❌ Veuillez entrer un numéro de téléphone.");
     }
 
     if (!phoneRegex.test(phoneTrimmed)) {
-      return setAddMessage("❌ Numéro invalide : utilisez uniquement des chiffres (entre 6 et 15).");
+      return setErrorAvis("❌ Numéro invalide : utilisez uniquement des chiffres (entre 6 et 15).");
     }
 
     try {
@@ -113,7 +115,7 @@ function App() {
         return setAddMessage(data.message || 'Erreur');
       }
 
-      setAddMessage('✅ Avis ajouté');
+      setAddMessage('✅ Avis ajouté sur le ' + newAvis.client_phone);
       setNewAvis({ client_phone: '', is_positive: true, message: '' });
 
       // Refresh de la recherche si même numéro
@@ -128,6 +130,11 @@ function App() {
   const handleLogout = () => {
     localStorage.clear();
     setUser(null);
+    setAvisList([]);
+    setPhone('');
+    setAddMessage('');
+    setError('');
+    setErrorAvis('');
   };
 
   if (!user) {
@@ -268,6 +275,7 @@ return (
       >
         Ajouter l’avis
       </button>
+      {errorAvis && <p className="text-red-600 mt-3">{errorAvis}</p>}
       {addMessage && <p className="mt-3 text-green-600 text-sm">{addMessage}</p>}
     </div>
   </div>
