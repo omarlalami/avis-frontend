@@ -74,137 +74,133 @@ function Login({ onLogin, onToggle }) {
 
 
   return (
+<div className="min-h-screen bg-white text-gray-800 flex flex-col">
+  {/* En-tête */}
+  <div className="flex flex-col lg:flex-row items-center justify-center gap-10 px-6 py-10 bg-white border-b border-gray-100">
+    <img
+      src="/logoadaptepageacceuil.png"
+      alt="colis non reçu"
+      className="w-full max-w-[160px] rounded-lg"
+    />
+    <h1 className="text-2xl lg:text-3xl font-bold text-center leading-relaxed">
+      Évitez les clients qui ne récupèrent pas leurs commandes !
+    </h1>
+  </div>
 
-    <div className="min-h-screen bg-white text-gray-800 flex flex-col justify-between">
-      {/* En-tête */}
-      <div className="flex flex-col lg:flex-row items-center justify-center gap-30 p-3 bg-white">
-        <img
-          src="/logoadaptepageacceuil.png"
-          alt="colis non reçu"
-          className="w-full max-w-[200px] rounded-lg"
-        />
-
-        <div className="text-center py-1">
-          <br /> <br /> <h1 className="text-2xl font-bold"> Évitez les clients qui ne  récupèrent pas leurs commandes !</h1><br /><br />
-        </div>
-
-      </div>
-
-
-      {/* Partie principale : avis défilants + login */}
-      <div className="flex flex-col lg:flex-row justify-center lg:items-center items-start px-4 lg:px-20 gap-10">
-        {/* Avis défilants (slide horizontal) */}
-        <div className="flex-1 max-w-xl overflow-hidden relative h-[230px]">
-          <div
-            className="flex transition-transform duration-700 ease-in-out"
-            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-          >
-            {avisList.map((avis, index) => (
-              <div key={index} className="min-w-full px-2">
-                <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-4 hover:shadow-md transition">
-                  <div className="flex items-center justify-between gap-2 mb-2">
-                    <span
-                      className={`text-lg font-semibold px-3 py-1 rounded-full ${
-                        avis.is_positive
-                          ? 'bg-green-100 text-green-700'
-                          : 'bg-red-100 text-red-700'
-                      }`}
-                    >
-                      {avis.is_positive ? '👍 Avis positif' : '👎 Avis négatif'}
-                    </span>
-
-                    <div className="text-lg text-gray-500">
-                      {new Date(avis.created_at).toLocaleDateString('fr-FR', {
-                        day: '2-digit',
-                        month: '2-digit',
-                        year: 'numeric',
-                      })}
-                    </div>
-                  </div>
-
-                  {avis.message && (
-                    <p className="text-gray-800 mb-2 text-lg flex">📝 {avis.message}</p>
-                  )}
-
-                  <div className="flex items-center gap-3">
-                    <img
-                      src="/logouser.png"
-                      alt="avatar"
-                      className="w-14 h-14 rounded-full"
-                    />
-                    <div className="text-base text-gray-500">
-                      <span className="font-medium">{avis.professional_email}</span><br />
-                      <span className="font-medium">Professionnel</span>
-                    </div>
-                  </div>
+  {/* Partie principale : avis défilants + login */}
+  <div className="flex flex-col lg:flex-row justify-center lg:items-center items-start px-4 lg:px-20 gap-10 py-10 bg-gray-50">
+    {/* Avis défilants */}
+    <div className="flex-1 max-w-xl overflow-hidden relative h-[230px]">
+      <div
+        className="flex transition-transform duration-700 ease-in-out"
+        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+      >
+        {avisList.map((avis, index) => (
+          <div key={index} className="min-w-full px-2">
+            <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-4 hover:shadow-md transition">
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <span
+                  className={`text-lg font-semibold px-3 py-1 rounded-full ${
+                    avis.is_positive ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
+                  }`}
+                >
+                  {avis.is_positive ? '👍 Avis positif' : '👎 Avis négatif'}
+                </span>
+                <div className="text-sm text-gray-500">
+                  {new Date(avis.created_at).toLocaleDateString('fr-FR', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                  })}
                 </div>
               </div>
-            ))}
+              {avis.message && (
+                <p className="text-gray-800 mb-2 text-base">📝 {avis.message}</p>
+              )}
+              <div className="flex items-center gap-3">
+                <img
+                  src="/logouser.png"
+                  alt="avatar"
+                  className="w-12 h-12 rounded-full"
+                />
+                <div className="text-sm text-gray-600">
+                  <span className="font-medium">{avis.professional_email}</span><br />
+                  <span>Professionnel</span>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-
-        {/* Formulaire de connexion */}
-        <div className="w-full max-w-md bg-white rounded-xl shadow-md p-6 space-y-5">
-          <h2 className="text-2xl font-bold text-center text-gray-800">🔐 Connexion</h2>
-
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-
-          <input
-            type="password"
-            placeholder="Mot de passe"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-
-          <button
-            onClick={handleLogin}
-            className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
-          >
-            Se connecter
-          </button>
-
-          <button
-            onClick={onToggle}
-            className="w-full bg-gray-500 hover:bg-gray-600 text-white font-medium py-2 rounded-lg transition"
-          >
-            Créer un nouveau compte
-          </button>
-          <div className="flex justify-center">
-            {error && <p className="mt-3 inline-block px-4 py-2 bg-red-100 text-red-700 border border-red-300 rounded-md text-sm shadow-sm text-center">{error}</p>}
-          </div>
-        
-        </div>
-      </div>
-
-      {/* Bas de page */}
-      <div className="flex flex-col lg:flex-row items-center justify-center gap-8 p-10 bg-white">
-        <img
-          src="/livreurnonrecuperer.webp"
-          alt="colis non reçu"
-          className="w-full max-w-sm rounded-lg shadow-md"
-        />
-
-        <div className="text-left space-y-3 max-w-2xl">
-          <p className="text-lg font-semibold">
-            Notre objectif est d'aider les professionnels à réduire les envois aux clients qui ne récupèrent pas leurs commandes.
-          </p>
-          <ul className="pl-1 text-gray-700 space-y-1">
-            <li>✅ Vérifiez la réputation et la fiabilité de vos clients avant l'envoi.</li>
-            <li>❌ Éviter les mauvais clients qui ne récupèrent pas les commandes</li>
-            <li>📌 Obtenez des informations sur les utilisateurs</li>
-            <li>🎁 Profitez d'une application gratuite et sans publicité</li>
-            <li>🗂️ Utilisez notre base de notes de clients</li>
-          </ul>
-        </div>
+        ))}
       </div>
     </div>
+
+    {/* Formulaire de connexion */}
+    <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-6 space-y-5">
+      <h2 className="text-2xl font-bold text-center text-gray-800">🔐 Connexion</h2>
+
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+
+      <input
+        type="password"
+        placeholder="Mot de passe"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+
+      <button
+        onClick={handleLogin}
+        className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+      >
+        Se connecter
+      </button>
+
+      <button
+        onClick={onToggle}
+        className="w-full bg-gray-500 hover:bg-gray-600 text-white font-medium py-2 rounded-lg transition"
+      >
+        Créer un nouveau compte
+      </button>
+
+      {error && (
+        <div className="flex justify-center">
+          <p className="mt-3 px-4 py-2 bg-red-100 text-red-700 border border-red-300 rounded-md text-sm shadow-sm text-center">
+            {error}
+          </p>
+        </div>
+      )}
+    </div>
+  </div>
+
+  {/* Bas de page */}
+  <div className="flex flex-col lg:flex-row items-center justify-center gap-10 px-6 py-12 bg-white border-t border-gray-100">
+    <img
+      src="/livreurnonrecuperer.webp"
+      alt="colis non reçu"
+      className="w-full max-w-sm rounded-lg shadow-md"
+    />
+
+    <div className="text-left space-y-4 max-w-2xl">
+      <p className="text-lg font-semibold">
+        Notre objectif est d'aider les professionnels à réduire les envois aux clients qui ne récupèrent pas leurs commandes.
+      </p>
+      <ul className="pl-4 list-disc text-gray-700 space-y-1">
+        <li>✅ Vérifiez la réputation et la fiabilité de vos clients avant l'envoi.</li>
+        <li>❌ Éviter les mauvais clients qui ne récupèrent pas les commandes</li>
+        <li>📌 Obtenez des informations sur les utilisateurs</li>
+        <li>🎁 Profitez d'une application gratuite et sans publicité</li>
+        <li>🗂️ Utilisez notre base de notes de clients</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
   );
 
 };
