@@ -16,6 +16,7 @@ function App() {
   const [avisList, setAvisList] = useState([]);
   const [error, setError] = useState('');
   const [errorAvis, setErrorAvis] = useState('');
+  const [searchRequested, setSearchRequested] = useState(false);
   const API_URL = process.env.REACT_APP_API_URL;
 
   // Champs pour ajout d’avis
@@ -69,6 +70,8 @@ function App() {
       }
 
       setAvisList(data.avis);
+      setSearchRequested(true);
+      
     } catch (err) {
       setError('Erreur serveur');
     }
@@ -136,6 +139,7 @@ function App() {
     setAddMessage('');
     setError('');
     setErrorAvis('');
+    setSearchRequested(false);
   };
 
   if (!user) {
@@ -154,9 +158,27 @@ function App() {
 
 return (
 
+<div className="min-h-screen bg-white text-gray-800 flex flex-col justify-between">
+
+  <div className="flex flex-col lg:flex-row items-center justify-center gap-30 p-0 bg-white">
+    <img
+      src="/logoadaptepageacceuil.png"
+      alt="colis non reçu"
+      className="w-full max-w-[200px] rounded-lg"
+    />
+
+    <div className="text-center py-1">
+      <br /> <br /> <h1 className="text-2xl font-bold"> Évitez les clients qui ne  récupèrent pas leurs commandes !</h1><br /><br />
+    </div>
+
+  </div>
+
+
+
 <div className="max-w-5xl mx-auto p-6 bg-white rounded-2xl shadow-lg">
+
   {/* Header utilisateur */}
-  <div className="flex items-center justify-between mb-8 p-5 bg-gray-50 border border-gray-200 rounded-xl shadow-sm">
+  <div className="flex items-center justify-between mb-5 p-5 bg-gray-50 border border-gray-200 rounded-xl shadow-sm">
     <div>
       <h2 className="text-2xl font-bold text-gray-800">👋 Bienvenue</h2>
       <p className="text-2xl text-gray-600">{user.email}</p>
@@ -205,7 +227,7 @@ return (
       <div>
         <h3 className="text-lg font-semibold mb-4">📄 Résultats</h3>
 
-        {avisList.length === 0 ? (
+        {searchRequested && avisList.length === 0 ? (
           <p className="text-gray-500 text-lg font-semibold">Aucun avis trouvé pour le numéro <br />Soyez le premier a ajouter un avis !</p>
         ) : (
           <div className="grid gap-4">
@@ -309,7 +331,7 @@ return (
   </div>
 </div>
 
-
+ </div>
 );
 
 }
