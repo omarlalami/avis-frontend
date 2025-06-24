@@ -328,6 +328,9 @@
   .max-w-\[160px\] {
     max-width: 160px;
   }
+  .max-w-\[190px\] {
+    max-width: 190px;
+  }
   .max-w-\[200px\] {
     max-width: 200px;
   }
@@ -761,6 +764,12 @@
   .lg\:px-20 {
     @media (width >= 64rem) {
       padding-inline: calc(var(--spacing) * 20);
+    }
+  }
+  .lg\:text-2xl {
+    @media (width >= 64rem) {
+      font-size: var(--text-2xl);
+      line-height: var(--tw-leading, var(--text-2xl--line-height));
     }
   }
   .lg\:text-3xl {

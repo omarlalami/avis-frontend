@@ -163,7 +163,7 @@ return (
     <img
       src="/logoadaptepageacceuil.png"
       alt="colis non reçu"
-      className="w-full max-w-[160px] rounded-lg"
+      className="w-full max-w-[190px] rounded-lg"
     />
     <h1 className="text-2xl lg:text-3xl font-bold text-center">
       Évitez les clients qui ne récupèrent pas leurs commandes !
