@@ -120,6 +120,7 @@ function App() {
 
       // Refresh de la recherche si même numéro
       if (newAvis.client_phone === phone) {
+      //  setPhone(newAvis.client_phone);
         handleSearch();
       }
     } catch (err) {
