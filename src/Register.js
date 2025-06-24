@@ -49,8 +49,26 @@ function Register({ onRegister, onToggle }) {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="w-full max-w-md bg-white rounded-xl shadow-md p-6 space-y-5">
+
+    <div className="min-h-screen bg-white text-gray-800 flex flex-col justify-between">
+      {/* En-tête */}
+      <div className="flex flex-col lg:flex-row items-center justify-center gap-30 p-3 bg-white">
+        <img
+          src="/logoadaptepageacceuil.png"
+          alt="colis non reçu"
+          className="w-full max-w-[200px] rounded-lg"
+        />
+
+        <div className="text-center py-1">
+          <br /> <br /> <h1 className="text-2xl font-bold"> Évitez les clients qui ne  récupèrent pas leurs commandes !</h1><br /><br />
+        </div>
+
+      </div>
+
+
+
+    <div className="min-h-screen flex  justify-center bg-white-100 px-4">
+      <div className="w-full max-w-md bg-white rounded-xl shadow-md p-6 space-y-5">        
         <h2 className="text-2xl font-bold text-center text-gray-800">
           👤 Inscription
         </h2>
@@ -82,7 +100,7 @@ function Register({ onRegister, onToggle }) {
           onClick={onToggle}
           className="w-full bg-gray-500 hover:bg-gray-600 text-white font-medium py-2 rounded-lg transition"
         >
-          ← Retour à la connexion
+          Vous avez déjà un compte ? Se connecter
         </button>
         <div className="flex justify-center">
           {message && (
@@ -93,6 +111,7 @@ function Register({ onRegister, onToggle }) {
         </div>
 
       </div>
+    </div>
     </div>
   );
 }

@@ -174,7 +174,7 @@ function Login({ onLogin, onToggle }) {
             onClick={onToggle}
             className="w-full bg-gray-500 hover:bg-gray-600 text-white font-medium py-2 rounded-lg transition"
           >
-            S'inscrire →
+            Créer un nouveau compte
           </button>
           <div className="flex justify-center">
             {error && <p className="mt-3 inline-block px-4 py-2 bg-red-100 text-red-700 border border-red-300 rounded-md text-sm shadow-sm text-center">{error}</p>}
