@@ -90,7 +90,7 @@ function App() {
     }
 
     if (!phoneRegex.test(phoneTrimmed)) {
-      return setErrorAvis("Numéro invalide : utilisez uniquement des chiffres (entre 6 et 15).");
+      return setErrorAvis("Numéro invalide : exemple 06617745837");
     }
 
     try {
